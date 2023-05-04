@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from './components/public/Navbar';
 
 function App() {
   const [testMessage, setTestMessage] = useState('');
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <h1>Front-end React</h1>
       <p>Message reçu du back-end Java Spring: {testMessage}</p>
     </div>
