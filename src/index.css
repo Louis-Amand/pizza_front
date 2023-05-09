@@ -1,3 +1,46 @@
 .title-generazza {
-  font-size: 40px;
+    font-size: 40px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-left: 5rem;
+
+}
+
+.ingredient {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.ingredient-name {
+    font-size: 24px;
+}
+
+.base {
+    margin-bottom: 2rem;
+    font-size: 24px;
+}
+
+.ingredient-check {
+    display: flex;
+    gap: 5px;
+}
+
+.ingredient-check input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.custom-select {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 5px;
 }

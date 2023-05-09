@@ -1,9 +1,10 @@
 import * as React from 'react';
+
 export function Ingredient({name}) {
     return (
-        <>
-            <label htmlFor="">{name}</label>
+        <div className={"ingredient-check"}>
+            <label className={"ingredient-name"} htmlFor="">{name}</label>
             <input type="checkbox"/>
-        </>
+        </div>
     );
 };
