@@ -6,10 +6,9 @@ export function CustomPizzaPage() {
     return (
         <>
             <h2 className={"title-generazza"}>Je choisis mes ingredients pour une pizza personnel !</h2>
-            <div>
+            <div className={"customFormDisplay"}>
                 <FormPizza/>
-                <img src={Pizza} alt=""/>
-
+                <img width={"500px"} src={Pizza} alt=""/>
             </div>
         </>
     );

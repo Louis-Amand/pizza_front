@@ -1,0 +1,14 @@
+.title-generazza {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 5rem;
+}
+
+
+.customFormDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5rem;
+}

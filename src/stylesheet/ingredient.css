@@ -1,0 +1,26 @@
+.ingredient-name {
+    font-size: 24px;
+}
+
+.ingredient-label {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.ingredient-check {
+    display: flex;
+    gap: 5px;
+}
+
+.ingredient-check input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.ingredient {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 20px;
+    margin-top: 2rem;
+}

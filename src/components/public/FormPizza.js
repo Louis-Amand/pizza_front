@@ -11,7 +11,7 @@ export function FormPizza() {
                     <option value="creme">Crème</option>
                 </select>
                 <div className={"ingredient"}>
-                    <label className={"ingredient-name"} htmlFor="">Ingredient</label>
+                    <label className={"ingredient-label"} htmlFor="">Ingredient</label>
                     <Ingredient name={"chorizo"}/>
                 </div>
             </div>
