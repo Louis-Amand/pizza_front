@@ -32,6 +32,7 @@ const CardPizzaPage = () => {
                         key={pizza.id}
                         image={`http://localhost:8080/ServExistingPizzaImage/${pizza.image}`}
                         title={pizza.name}
+                        price={pizza.price}
                         ingredients={pizza.ingredients}
                         onOrder={() => handleOrder(pizza.id)}
                     />
