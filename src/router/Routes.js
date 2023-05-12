@@ -3,6 +3,7 @@ import {CustomPizzaPage} from "../components/CustomPizzaPage";
 import CardPizzaPage from "../components/CardPizzaPage";
 import {FrontPage} from "../components/FrontPage";
 import {AdminPage} from "../components/public/AdminPage";
+import {BackofficePage} from "../components/BackofficePage";
 
 export const accueil = "/"
 export const generazza = "/generazza"
@@ -30,6 +31,9 @@ export const router = createBrowserRouter([
     },{
         path: admin,
         element: <AdminPage/>,
+    },{
+        path: admin_office,
+        element: <BackofficePage/>,
     },
 ]);
 
