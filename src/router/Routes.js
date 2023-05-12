@@ -1,18 +1,30 @@
 import {createBrowserRouter} from "react-router-dom";
 import {CustomPizzaPage} from "../components/CustomPizzaPage";
 import CardPizzaPage from "../components/CardPizzaPage";
+import {FrontPage} from "../components/FrontPage";
+
+export const accueil = "/"
+export const generazza = "/generazza"
+export const carte = "/carte"
+export const commande = "/commande"
 
 export const router = createBrowserRouter([
     {
-        path: "/",
-        element: <><h1>Salut</h1></>,
+        path: accueil,
+        element: <FrontPage/>,
     },
     {
-        path: "/generazza",
+        path: generazza,
         element: <CustomPizzaPage/>,
     },
     {
-        path: "/carte",
+        path: carte,
+        element: <CardPizzaPage/>,
+    },
+    {
+        path: commande,
         element: <CardPizzaPage/>,
     },
 ]);
+
+
