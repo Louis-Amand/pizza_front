@@ -2,9 +2,12 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export function BackofficePage() {
+	const [updatedBase,setUpdatedBase] = useState();
 	const [updatedIngredient,setUpdatedIngredient] = useState();
-	const [isUpdateMod, setIsUpdateMod] = useState(false);
+	const [isUpdateModIg, setIsUpdateModIg] = useState(false);
+	const [isUpdateModBa, setIsUpdateModBa] = useState(false);
 	const [newIngredient, setNewIngredient] = useState();
+	const [newBase, setNewBase] = useState();
 	const [ingredients, setIngredients] = useState([]);
 	const [bases, setBases] = useState([]);
 
@@ -42,40 +45,97 @@ export function BackofficePage() {
 				id: id
 			}).then((response)=>{
 				setIngredients(response.data)
+				setNewIngredient('')
 			})
 		}
 	}
 
 	const updateIngredient = (ingredient) => {
 		setUpdatedIngredient(ingredient)
-		setIsUpdateMod(true)
+		setIsUpdateModIg(true)
 		setNewIngredient(ingredient.name)
 	}
 
-	function handleUpdate() {
+	function handleUpdateIngredient() {
 		if (newIngredient !== undefined && newIngredient != null){
 			axios.put(`http://localhost:8080/api/ingredient/${updatedIngredient.id}`,{
 				name: newIngredient,
 				id: updatedIngredient.id
 			}).then((response)=>{
 				setIngredients(response.data)
+				setIsUpdateModIg(false)
+				setNewIngredient('')
 			})
 		}
 	}
 
+	const handleNewBase = (event) => {
+		setNewBase(event.target.value)
+	}
+
+	const updateBase = (base) => {
+		setUpdatedBase(base)
+		setIsUpdateModBa(true)
+		setNewBase(base.name)
+	}
+
+	function postNewBase() {
+		let id = 0
+
+		if (bases !== [] && bases != null){
+			id = bases[bases?.length-1]?.id+1
+		}
+		if (newBase !== undefined && newBase != null){
+			axios.post('http://localhost:8080/api/base',{
+				name: newBase,
+				id: id
+			}).then((response)=>{
+				setBases(response.data)
+				setNewBase('');
+			})
+		}
+	}
+
+	function handleUpdateBase() {
+		if (newBase !== undefined && newBase != null){
+			axios.put(`http://localhost:8080/api/base/${updatedBase.id}`,{
+				name: newBase,
+				id: updatedBase.id
+			}).then((response)=>{
+				setBases(response.data)
+				setIsUpdateModBa(false)
+				setNewBase('');
+			})
+		}
+	}
+
+	function delBase(id) {
+		axios.delete(`http://localhost:8080/api/deleteBase/${id}`).then((response)=>{
+			if (response.data === true) {
+				setBases(bases.filter((base) => base.id !== id))
+			}
+		})
+	}
+
 	return (
-		<div>
+		<div className={'section-back'}>
 			<div className={'back-box'}>
 				<div className="back-form">
 					<h1>Ajouter une base</h1>
 					<div>
-						<input type="text" name="field1" placeholder="Nom de la base"/>
-						<button id={'form-btn'}>Créer un nouvel ingrédient</button>
-
+						<input type="text" onChange={(e)=>handleNewBase(e)}  value={newBase ?? ""} placeholder="Nom de la base"/>
+						{isUpdateModBa ? <button onClick={()=>handleUpdateBase()} id={'form-btn-mod'}>Modifier Base</button> : <button onClick={()=>postNewBase()} id={'form-btn'}>Créer une nouvelle base</button>}
 					</div>
 				</div>
 				<div className={'back-elm-list'}>
+					{bases.map((base)=>{
 
+						return <div key={base.id} className={"back-elements"}>
+							<p>{base.name}</p>
+							<button onClick={()=>updateBase(base)}  className={"btn-mod"}>Modifier</button>
+							<button onClick={()=>delBase(base.id)} className={"btn-del"}>X</button>
+						</div>
+					})}
 				</div>
 			</div>
 			<div className={'back-box'}>
@@ -83,7 +143,7 @@ export function BackofficePage() {
 					<h1>Ajouter un ingrédient</h1>
 					<div>
 						<input type="text" onChange={(e)=>handleNewIngredient(e)} value={newIngredient ?? ""} placeholder="Nom de l'ingrédient"/>
-						{isUpdateMod ? <button onClick={()=>handleUpdate()} id={'form-btn-mod'}>Modifier ingrédient</button> : <button onClick={()=>postNewIngredient()} id={'form-btn'}>Créer un nouvel ingrédient</button>}
+						{isUpdateModIg ? <button onClick={()=>handleUpdateIngredient()} id={'form-btn-mod'}>Modifier ingrédient</button> : <button onClick={()=>postNewIngredient()} id={'form-btn'}>Créer un nouvel ingrédient</button>}
 
 					</div>
 				</div>

@@ -1,3 +1,8 @@
+.section-back {
+	margin-top: 6rem;
+	margin-bottom: 6rem;
+}
+
 .back-form{
 	font: 95% Arial, Helvetica, sans-serif;
 	max-width: 400px;
