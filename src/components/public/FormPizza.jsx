@@ -66,9 +66,11 @@ export function FormPizza() {
         const pizzaData = {
             id: lastId,
             type: "Générazza",
-            price: 15
+            price: "15 €",
+            base: selectedBase,
+            ingredients: selectedIngredient
         };
-
+        window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
         // axios.post('http://localhost:8080/api/customPizza', {
         //     uuid: uudi,
         //     id: lastId,
@@ -81,7 +83,7 @@ export function FormPizza() {
 
 
         // Redirection vers la page de commande avec les données de la pizza
-        window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
+
 
     }
 
@@ -105,6 +107,7 @@ export function FormPizza() {
                             onClick={handleSelectedIngredient}
                             key={ingredient.id}
                             name={ingredient.name}
+                            price={ingredient.price}
                             id={ingredient.id}
                         />
                     })}

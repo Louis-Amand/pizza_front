@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const CommandPage = ({ pizza }) => {
+const CommandPage = () => {
     const [formState, setFormState] = useState({
         name: '',
         firstName: '',
@@ -12,6 +12,13 @@ const CommandPage = ({ pizza }) => {
         cvv: '',
         pizza: {} // Objet pizza qui sera rempli avec les données transmises
     });
+
+    useEffect(() => {
+        // Récupérer les données de la pizza transmises via l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pizzaData = JSON.parse(urlParams.get('data'));
+        setFormState(prevState => ({ ...prevState, pizza: pizzaData }));
+    }, []);
 
     const handleChange = (event) => {
         setFormState({
@@ -39,12 +46,11 @@ const CommandPage = ({ pizza }) => {
             <h1 className='page-title'>Je finalise ma commande</h1>
             <h2 className='page-title-2'>Récapitulatif de la commande :</h2>
             <div className='data-row'>
-                <p>Type de pizza :<span className='value'> Générazza </span></p>
-                <p>&nbsp;au prix de :<span className='value'>15 €</span></p>
+                <p>Type de pizza :<span className='value'> {formState.pizza.type}</span></p>
+                <p>&nbsp;au prix de :<span className='value'> {formState.pizza.price}</span></p>
             </div>
             <h2 className='page-title-2'>Informations de contact :</h2>
             <form onSubmit={handleSubmit}>
-
                 <label>
                     Nom :
                     <input type="text" name="name" onChange={handleChange} />
@@ -78,7 +84,7 @@ const CommandPage = ({ pizza }) => {
 
                 <input type="submit" value="Commander" />
             </form>
-        </div >
+        </div>
     );
 };
 
