@@ -1,11 +1,15 @@
-import CardPizzaPage from './components/CardPizzaPage';
-function App() {
+import React from 'react';
+import {
+  RouterProvider,
+} from "react-router-dom";
+import {router} from "./router/Routes";
 
+function App() {
 
   return (
     <div className="App">
-      <CardPizzaPage />
-    </div >
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

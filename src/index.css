@@ -1,3 +1,6 @@
+@import "stylesheet/ingredient.css";
+@import "stylesheet/formPizza.css";
+@import "stylesheet/customPage.css";
 body {
   background-color: #E4E4E4;
   margin: 0;
