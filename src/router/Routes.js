@@ -9,6 +9,7 @@ export const generazza = "/generazza"
 export const carte = "/carte"
 export const commande = "/commande"
 export const admin = "/admin"
+export const admin_office = "/admin-office"
 
 export const router = createBrowserRouter([
     {

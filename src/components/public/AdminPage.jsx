@@ -1,5 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
+import {admin_office} from "../../router/Routes";
 
 export function AdminPage() {
 	const [email, setEmail] = useState();
@@ -24,12 +25,15 @@ export function AdminPage() {
 			return;
 		}
 
-		axios.post("https://localhost:8080/api/login",
+		axios.post("http://localhost:8080/api/login",
 			{
 				email: email,
 				password: password
 			}).then((response)=>{
-
+				if (response.data === true) {
+					window.localStorage.setItem("isAuth",response.data);
+					window.location = window.location.href = admin_office;
+				}
 		})
 
 	}
@@ -38,7 +42,7 @@ export function AdminPage() {
 		<div className="container-login">
 			<div className="screen">
 				<div className="screen__content">
-					<form className="login">
+					<div className="login">
 						<div className="login__field">
 							<i className="login__icon fas fa-user"></i>
 							<input onChange={(e)=> handleEmail(e)} type="text" className="login__input" placeholder="Email"/>
@@ -51,7 +55,7 @@ export function AdminPage() {
 							<span className="button__text">Authentifiez vous</span>
 							<i className="button__icon fas fa-chevron-right"></i>
 						</button>
-					</form>
+					</div>
 				</div>
 				<div className="screen__background">
 					<span className="screen__background__shape screen__background__shape4"></span>
