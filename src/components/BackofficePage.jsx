@@ -8,6 +8,7 @@ export function BackofficePage() {
 	const [isUpdateModBa, setIsUpdateModBa] = useState(false);
 	const [newIngredient, setNewIngredient] = useState();
 	const [newBase, setNewBase] = useState();
+	const [newIgPrice, setNewIgPrice] = useState();
 	const [ingredients, setIngredients] = useState([]);
 	const [bases, setBases] = useState([]);
 
@@ -42,10 +43,12 @@ export function BackofficePage() {
 		if (newIngredient !== undefined && newIngredient != null){
 			axios.post('http://localhost:8080/api/ingredient',{
 				name: newIngredient,
+				price: newIgPrice,
 				id: id
 			}).then((response)=>{
 				setIngredients(response.data)
 				setNewIngredient('')
+				setNewIgPrice('')
 			})
 		}
 	}
@@ -54,20 +57,32 @@ export function BackofficePage() {
 		setUpdatedIngredient(ingredient)
 		setIsUpdateModIg(true)
 		setNewIngredient(ingredient.name)
+		setNewIgPrice(ingredient.price)
 	}
 
 	function handleUpdateIngredient() {
 		if (newIngredient !== undefined && newIngredient != null){
 			axios.put(`http://localhost:8080/api/ingredient/${updatedIngredient.id}`,{
 				name: newIngredient,
+				price : Math.round(newIgPrice*100)/100,
 				id: updatedIngredient.id
 			}).then((response)=>{
 				setIngredients(response.data)
 				setIsUpdateModIg(false)
 				setNewIngredient('')
+				setNewIgPrice('')
 			})
 		}
 	}
+
+	function handleNewIgPrice(e) {
+		if (isNaN(e.target.value)){
+			alert("Veuillez saisir un prix !")
+			return;
+		}
+		setNewIgPrice(e.target.value)
+	}
+
 
 	const handleNewBase = (event) => {
 		setNewBase(event.target.value)
@@ -143,6 +158,7 @@ export function BackofficePage() {
 					<h1>Ajouter un ingrédient</h1>
 					<div>
 						<input type="text" onChange={(e)=>handleNewIngredient(e)} value={newIngredient ?? ""} placeholder="Nom de l'ingrédient"/>
+						<input type="text" onChange={(e)=>handleNewIgPrice(e)}  value={newIgPrice ?? ""} placeholder="Prix"/>
 						{isUpdateModIg ? <button onClick={()=>handleUpdateIngredient()} id={'form-btn-mod'}>Modifier ingrédient</button> : <button onClick={()=>postNewIngredient()} id={'form-btn'}>Créer un nouvel ingrédient</button>}
 
 					</div>
@@ -150,7 +166,7 @@ export function BackofficePage() {
 				<div className={'back-elm-list'}>
 					{ingredients.map((ingredient)=>{
 						return <div key={ingredient.id} className={"back-elements"}>
-							<p>{ingredient.name}</p>
+							<p>{ingredient.name} : {ingredient.price} €</p>
 							<button onClick={()=>updateIngredient(ingredient)}  className={"btn-mod"}>Modifier</button>
 							<button onClick={()=>delIngredient(ingredient.id)} className={"btn-del"}>X</button>
 						</div>

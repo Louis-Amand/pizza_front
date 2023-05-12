@@ -93,6 +93,7 @@ export function FormPizza() {
                             onClick={handleSelectedIngredient}
                             key={ingredient.id}
                             name={ingredient.name}
+                            price={ingredient.price}
                             id={ingredient.id}
                         />
                     })}

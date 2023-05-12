@@ -19,9 +19,7 @@
 	color: #fff;
 	margin: -16px -16px 16px -16px;
 }
-.back-form input[type="text"],
-.back-form textarea,
-.back-form select
+.back-form input[type="text"]
 {
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -39,9 +37,7 @@
 	color: #555;
 	font: 95% Arial, Helvetica, sans-serif;
 }
-.back-form input[type="text"]:focus,
-.back-form textarea:focus,
-.back-form select:focus
+.back-form input[type="text"]:focus
 {
 	box-shadow: 0 0 5px #4c5259;
 	padding: 3%;
