@@ -1,5 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import {CustomPizzaPage} from "../components/CustomPizzaPage";
+import CardPizzaPage from "../components/CardPizzaPage";
 
 export const router = createBrowserRouter([
     {
@@ -9,5 +10,9 @@ export const router = createBrowserRouter([
     {
         path: "/generazza",
         element: <CustomPizzaPage/>,
+    },
+    {
+        path: "/carte",
+        element: <CardPizzaPage/>,
     },
 ]);
