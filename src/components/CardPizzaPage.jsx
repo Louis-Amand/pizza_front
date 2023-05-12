@@ -19,7 +19,14 @@ const CardPizzaPage = () => {
     }, []);
 
     const handleOrder = (pizzaId) => {
-        console.log(`Commande de la pizza avec l'ID ${pizzaId} en cours...`);
+        // Passer les informations nécessaires pour la commande à la page correspondante
+        const pizzaData = {
+            id: pizzaId,
+            price: pizzas.find((pizza) => pizza.id === pizzaId).price,
+        };
+
+        // Redirection vers la page de commande avec les données de la pizza
+        window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
     };
 
     return (
