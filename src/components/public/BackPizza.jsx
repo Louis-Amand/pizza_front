@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Ingredient} from "./Ingredient";
 import * as React from "react";
+import {IngredientBackoffice} from "./IngredientBackOffice";
 
 export function BackPizza() {
 	const [updatedPizza, setUpdatedPizza] = useState();
@@ -10,9 +11,8 @@ export function BackPizza() {
 	const [bases, setBases] = useState([]);
 	const [ingredients, setIngredients] = useState([]);
 	const [pizzas, setPizzas] = useState([]);
-	const [selectedIngredient, setSelectedIngredients] = useState([]);
 	const [newPzPrice, setNewPzPrice] = useState();
-
+	const [checkedItems, setCheckedItems] = useState([]);
 
 	useEffect(() => {
 		axios.get('http://localhost:8080/api/bases').then((response) => {
@@ -35,6 +35,8 @@ export function BackPizza() {
 		setUpdatedPizza(pizza)
 		setIsUpdateModPizza(true)
 		setNewPizza(pizza.name)
+		setNewPzPrice(pizza.price)
+		setCheckedItems(pizza.ingredients)
 	}
 
 	function postNewPizza() {
@@ -49,7 +51,7 @@ export function BackPizza() {
 				name: newPizza,
 				image: "pizza.png",
 				price : parseFloat(newPzPrice),
-				ingredients: selectedIngredient
+				ingredients: checkedItems
 			}).then((response) => {
 				setPizzas(response.data)
 				setNewPizza('');
@@ -61,16 +63,18 @@ export function BackPizza() {
 
 	function handleUpdatePizza() {
 		if (newPizza !== undefined && newPizza != null) {
-			axios.put(`http://localhost:8080/api/base/${updatedPizza.id}`, {
+			axios.put(`http://localhost:8080/api/pizza/${updatedPizza.id}`, {
 				name: newPizza,
 				price : newPzPrice,
-				ingredients: selectedIngredient,
+				ingredients: checkedItems,
 				image: "pizza.png",
 				id: updatedPizza.id
 			}).then((response) => {
 				setPizzas(response.data)
 				setIsUpdateModPizza(false)
 				setNewPizza('');
+				setNewPzPrice("")
+				setCheckedItems([])
 			})
 		}
 	}
@@ -91,15 +95,14 @@ export function BackPizza() {
 		})
 	}
 
-	function handleSelectedIngredient(event, id) {
-		const ingredient = ingredients.find((ingredient) => ingredient.id === id);
 
-		if (event.target.checked) {
-			setSelectedIngredients([...selectedIngredient, ingredient]);
+	const handleCheckboxChange = (item, checked) => {
+		if (checked) {
+			setCheckedItems([...checkedItems, item]);
 		} else {
-			setSelectedIngredients(selectedIngredient.filter((ingredient) => ingredient.id !== id));
+			setCheckedItems(checkedItems.filter((checkedItem) => checkedItem !== item));
 		}
-	}
+	};
 
 	return (
 		<div className={'back-box'}>
@@ -110,15 +113,11 @@ export function BackPizza() {
 						   placeholder="Nom de la Pizza"/>
 					<input type="text" onChange={(e) => handleNewPzPrice(e)} value={newPzPrice ?? ""}
 						   placeholder="Prix"/>
-					{ingredients.map((ingredient) => {
-						return <Ingredient
-							onClick={handleSelectedIngredient}
-							key={ingredient.id}
-							name={ingredient.name}
-							price={ingredient.price}
-							id={ingredient.id}
+					<IngredientBackoffice
+							items={ingredients}
+							checkedItems={checkedItems}
+							onCheckboxChange={handleCheckboxChange}
 						/>
-					})}
 					{isUpdateModPizza ?
 						<button onClick={() => handleUpdatePizza()} id={'form-btn-mod'}>Modifier Pizza</button> :
 						<button onClick={() => postNewPizza()} id={'form-btn'}>Créer une nouvelle pizza</button>}
