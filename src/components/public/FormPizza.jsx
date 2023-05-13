@@ -3,11 +3,7 @@ import { Ingredient } from "./Ingredient";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
+
 
 export function FormPizza() {
     const [lastId, setlastId] = useState(0);
@@ -15,6 +11,7 @@ export function FormPizza() {
     const [selectedIngredient, setSelectedIngredients] = useState([]);
     const [bases, setBases] = useState([]);
     const [selectedBase, setSelectedBase] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(11);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/ingredients').then((response) => {
@@ -28,6 +25,12 @@ export function FormPizza() {
         })
     }, []
     )
+
+    useEffect(() => {
+        // Calculer le prix total en additionnant les prix des ingrédients
+        const sum = selectedIngredient.reduce((total, ingredient) => total + ingredient.price, 0);
+        setTotalPrice(sum + 11); // Ajouter le prix de base
+    }, [selectedIngredient]);
 
     function handleSelectedIngredient(event, id) {
         const ingredient = ingredients.find((ingredient) => ingredient.id === id);
@@ -48,8 +51,6 @@ export function FormPizza() {
     }
 
     const handleCommand = () => {
-        const uudi = uuidv4();
-        window.localStorage.setItem(uudi, JSON.stringify(uudi));
 
         if (selectedBase.length === 0) {
             alert("Veuillez choisir une base")
@@ -66,31 +67,21 @@ export function FormPizza() {
         const pizzaData = {
             id: lastId,
             type: "Générazza",
-            price: 15
+            price: `${totalPrice} €`,
+            base: selectedBase,
+            ingredients: selectedIngredient
         };
-
-        // axios.post('http://localhost:8080/api/customPizza', {
-        //     uuid: uudi,
-        //     id: lastId,
-        //     base: selectedBase,
-        //     ingredients: selectedIngredient
-        // }).then((response) => {
-        //     console.log(response)
-        //     alert("Votre pizza a bien été commandé")
-        // })
-
-
-        // Redirection vers la page de commande avec les données de la pizza
         window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
-
+        // Redirection vers la page de commande avec les données de la pizza
     }
 
     return (
         <>
             <div className={"form"}>
-                <label className={"base"} htmlFor="">Base</label>
+                <label className={"ingredient-label"} htmlFor="">1 - Je choisis ma base :</label>
+                <label className={"ingredient-label-2"}>Nos bases sont au tarif de 11 €</label>
                 <select onChange={(e) => handleSelectedBase(e)} className={"custom-select"} id="base-pizza">
-                    <option value="">Ajouté une Base</option>
+                    <option value="">je selectionne une base</option>
                     {bases.map((base) => {
                         return <option
                             value={base.name}
@@ -99,7 +90,7 @@ export function FormPizza() {
                     })}
                 </select>
                 <div className={"ingredient"}>
-                    <label className={"ingredient-label"} htmlFor="">Ingredient</label>
+                    <label className={"ingredient-label"} htmlFor="">2 - Je choisis mes ingredients :</label>
                     {ingredients.map((ingredient) => {
                         return <Ingredient
                             onClick={handleSelectedIngredient}
@@ -110,7 +101,8 @@ export function FormPizza() {
                         />
                     })}
                 </div>
-                <button onClick={handleCommand} className={'btn btn-commande'}>Commander la pizza</button>
+                <p className="total-price">Total: {totalPrice} €</p>
+                <button onClick={handleCommand} className={'btn btn-commande'}>Commander</button>
             </div>
         </>
     );

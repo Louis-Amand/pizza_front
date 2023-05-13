@@ -2,8 +2,16 @@
     text-align: center;
     font-size: 36px;
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
 }
+
+.title-generazza-2 {
+    text-align: center;
+    font-size: 26px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
 
 
 .customFormDisplay {
@@ -13,4 +21,18 @@
     align-items: center;
     gap: 5rem;
     margin-bottom: 5rem;
+}
+
+.img-size {
+    width: 30%;
+}
+
+@media (max-width: 767px) {
+    .customFormDisplay {
+        flex-direction: column-reverse;
+    }
+
+    .img-size {
+        width: 50%;
+    }
 }

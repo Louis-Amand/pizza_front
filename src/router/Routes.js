@@ -1,40 +1,49 @@
-import {createBrowserRouter} from "react-router-dom";
-import {CustomPizzaPage} from "../components/CustomPizzaPage";
+import { createBrowserRouter } from "react-router-dom";
+import { CustomPizzaPage } from "../components/CustomPizzaPage";
 import CardPizzaPage from "../components/CardPizzaPage";
-import {FrontPage} from "../components/FrontPage";
-import {AdminPage} from "../components/public/AdminPage";
-import {BackofficePage} from "../components/BackofficePage";
+import { FrontPage } from "../components/FrontPage";
 import CommandPage from "../components/CommandPage";
+import { AdminPage } from "../components/public/AdminPage";
+import { BackofficePage } from "../components/BackofficePage";
+import ConfirmationPage from "../components/ConfirmationPage";
 
 export const accueil = "/"
 export const generazza = "/generazza"
 export const carte = "/carte"
 export const commande = "/commande"
+export const confirmation = "/confirmation"
 export const admin = "/admin"
 export const admin_office = "/admin-office"
 
 export const router = createBrowserRouter([
     {
         path: accueil,
-        element: <FrontPage/>,
+        element: <FrontPage />,
     },
     {
         path: generazza,
-        element: <CustomPizzaPage/>,
+        element: <CustomPizzaPage />,
     },
     {
         path: carte,
-        element: <CardPizzaPage/>,
+        element: <CardPizzaPage />,
     },
     {
         path: commande,
         element: <CommandPage />,
-    },{
+    },
+    {
         path: admin,
-        element: <AdminPage/>,
-    },{
+        element: <AdminPage />,
+    },
+    {
         path: admin_office,
-        element: <BackofficePage/>,
+        element: <BackofficePage />,
+
+    },
+    {
+        path: confirmation,
+        element: <ConfirmationPage />,
     },
 ]);
 

@@ -1,9 +1,9 @@
 .ingredient-name {
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .ingredient-label {
-    font-size: 32px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -13,9 +13,8 @@
 }
 
 .ingredient-check input[type="checkbox"] {
-    margin-top: 10px;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .ingredient {
@@ -24,4 +23,10 @@
     align-items: baseline;
     gap: 20px;
     margin-top: 2rem;
+}
+
+.price {
+    font-size: 16px;
+    font-style: italic;
+    color: green;
 }

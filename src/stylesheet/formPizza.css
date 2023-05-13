@@ -6,10 +6,14 @@
 
 }
 
-.base {
-    margin-bottom: 2rem;
+.ingredient-label {
     font-size: 32px;
     font-weight: bold;
+}
+
+.ingredient-label-2 {
+    font-style: italic;
+    color: green;
 }
 
 .custom-select {
@@ -20,8 +24,13 @@
     padding: 5px;
 }
 
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 2em;
+}
+
 .btn {
-    margin-top: 3rem;
     width: 200px;
     height: 40px;
     border-radius: 5px;

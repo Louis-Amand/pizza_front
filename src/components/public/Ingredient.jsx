@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-export function Ingredient({name,price, id, onClick}) {
+export function Ingredient({ name, price, id, onClick }) {
 
 
     return (
         <div className={"ingredient-check"}>
-            <label className={"ingredient-name"} htmlFor="">{name} : {price} €</label>
-            <input onClick={(e) => onClick(e, id)} type="checkbox"/>
+            <input onClick={(e) => onClick(e, id)} type="checkbox" />
+            <label className={"ingredient-name"} htmlFor="">{name}  <span className='price'>+{price}€</span></label>
         </div>
     );
 };
