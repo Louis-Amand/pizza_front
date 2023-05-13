@@ -19,7 +19,6 @@ const CardPizzaPage = () => {
     }, []);
 
     const handleOrder = (pizzaId) => {
-        // Passer les informations nécessaires pour la commande à la page correspondante
         const pizzaData = {
             id: pizzaId,
             type: pizzas.find((pizza) => pizza.id === pizzaId).name,
