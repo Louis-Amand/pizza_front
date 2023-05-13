@@ -2,7 +2,7 @@ import * as React from 'react';
 import pizzaSvg from '../img/Group 6.svg'
 import pizzeria from '../img/pizzeria.jpg'
 import pizzaiolo from '../img/pizzaiolo.png'
-import { generazza } from "../router/Routes";
+import { carte, generazza } from "../router/Routes";
 
 export function FrontPage() {
     return (
@@ -13,7 +13,7 @@ export function FrontPage() {
                         <h1>GUSTO PIZZ, la pizzeria 100% Italia</h1>
                         <h2>Découvrez nos pizzas à la carte ou nos pizza personalisées avec notre superbe générateur !</h2>
                         <a href={generazza} class="custom-button">Je génère ma pizza</a>
-                        <a href={generazza} class="custom-button-2">Je veux voir la carte</a>
+                        <a href={carte} class="custom-button-2">Je veux voir la carte</a>
                     </div>
                 </div>
                 <div class="right-column">
