@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 const CommandPage = () => {
+
     const [formState, setFormState] = useState({
         name: '',
         firstName: '',
@@ -30,6 +32,7 @@ const CommandPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
 
         // Vérifier si les champs du formulaire sont vides
         if (
@@ -89,12 +92,12 @@ const CommandPage = () => {
             });
     };
 
-
     return (
         <div>
             <h1 className='page-title'>Je finalise ma commande</h1>
             <h2 className='page-title-2'>Récapitulatif de la commande :</h2>
             <div className='data-row'>
+
                 <p>Type de pizza :<span className='value'> {formState.pizza.type}</span></p>
                 <p>&nbsp;au prix de :<span className='value'> {formState.pizza.price}</span></p>
             </div>
@@ -120,6 +123,7 @@ const CommandPage = () => {
                 <h2 className='page-title-2'>Informations bancaires :</h2>
                 <label>
                     Numéro de la carte :
+
                     <input type="text" name="cardNumber" onChange={handleChange} required />
                 </label>
                 <label>

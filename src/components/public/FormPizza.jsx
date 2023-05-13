@@ -72,19 +72,7 @@ export function FormPizza() {
             ingredients: selectedIngredient
         };
         window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
-        // axios.post('http://localhost:8080/api/customPizza', {
-        //     id: lastId,
-        //     base: selectedBase,
-        //     ingredients: selectedIngredient
-        // }).then((response) => {
-        //     console.log(response)
-        //     alert("Votre pizza a bien été commandé")
-        // })
-
-
         // Redirection vers la page de commande avec les données de la pizza
-
-
     }
 
     return (

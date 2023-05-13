@@ -7,7 +7,6 @@ import { AdminPage } from "../components/public/AdminPage";
 import { BackofficePage } from "../components/BackofficePage";
 import ConfirmationPage from "../components/ConfirmationPage";
 
-
 export const accueil = "/"
 export const generazza = "/generazza"
 export const carte = "/carte"
