@@ -25,6 +25,7 @@ export function BackPizza() {
 			setPizzas(response.data);
 		})
 	}, [])
+	const [nameBtnPz, setNameBtnPz] = useState("Fermer");
 
 
 	const handleNewPizza = (event) => {
@@ -50,11 +51,16 @@ export function BackPizza() {
 				id: id,
 				name: newPizza,
 				image: "pizza.png",
-				price : parseFloat(newPzPrice),
+				price: parseFloat(newPzPrice),
 				ingredients: checkedItems
 			}).then((response) => {
 				setPizzas(response.data)
 				setNewPizza('');
+				setNewPzPrice("")
+				setCheckedItems([])
+				const listB = document.getElementById("pizza-list");
+				listB.classList.remove("unshow");
+				setNameBtnPz("Fermer")
 			})
 		} else {
 			alert("erreur dans la création de la pizza")
@@ -65,7 +71,7 @@ export function BackPizza() {
 		if (newPizza !== undefined && newPizza != null) {
 			axios.put(`http://localhost:8080/api/pizza/${updatedPizza.id}`, {
 				name: newPizza,
-				price : newPzPrice,
+				price: newPzPrice,
 				ingredients: checkedItems,
 				image: "pizza.png",
 				id: updatedPizza.id
@@ -75,6 +81,9 @@ export function BackPizza() {
 				setNewPizza('');
 				setNewPzPrice("")
 				setCheckedItems([])
+				const listB = document.getElementById("pizza-list");
+				listB.classList.remove("unshow");
+				setNameBtnPz("Fermer")
 			})
 		}
 	}
@@ -104,6 +113,17 @@ export function BackPizza() {
 		}
 	};
 
+	function handleColapse() {
+		const listB = document.getElementById("pizza-list");
+		listB.classList.toggle("unshow");
+		if (listB.classList.contains("unshow")) {
+			setNameBtnPz('Ouvrir')
+		} else {
+			setNameBtnPz("Fermer")
+		}
+	}
+
+
 	return (
 		<div className={'back-box'}>
 			<div className="back-form">
@@ -114,16 +134,17 @@ export function BackPizza() {
 					<input type="text" onChange={(e) => handleNewPzPrice(e)} value={newPzPrice ?? ""}
 						   placeholder="Prix"/>
 					<IngredientBackoffice
-							items={ingredients}
-							checkedItems={checkedItems}
-							onCheckboxChange={handleCheckboxChange}
-						/>
+						items={ingredients}
+						checkedItems={checkedItems}
+						onCheckboxChange={handleCheckboxChange}
+					/>
 					{isUpdateModPizza ?
 						<button onClick={() => handleUpdatePizza()} id={'form-btn-mod'}>Modifier Pizza</button> :
 						<button onClick={() => postNewPizza()} id={'form-btn'}>Créer une nouvelle pizza</button>}
 				</div>
+				<button onClick={() => handleColapse()} className={"back-colapse"}>{nameBtnPz}</button>
 			</div>
-			<div className={'back-elm-list'}>
+			<div id={"pizza-list"} className={'back-elm-list'}>
 				{pizzas.map((pizza) => {
 
 					return <div key={pizza.id} className={"back-elements"}>
