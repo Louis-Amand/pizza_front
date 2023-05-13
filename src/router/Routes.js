@@ -4,6 +4,7 @@ import CardPizzaPage from "../components/CardPizzaPage";
 import {FrontPage} from "../components/FrontPage";
 import {AdminPage} from "../components/public/AdminPage";
 import {BackofficePage} from "../components/BackofficePage";
+import CommandPage from "../components/CommandPage";
 
 export const accueil = "/"
 export const generazza = "/generazza"
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
     },
     {
         path: commande,
-        element: <CardPizzaPage/>,
+        element: <CommandPage />,
     },{
         path: admin,
         element: <AdminPage/>,

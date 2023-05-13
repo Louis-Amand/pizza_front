@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Ingredient} from "./Ingredient";
-import {useEffect, useState} from "react";
+import { Ingredient } from "./Ingredient";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function uuidv4() {
@@ -17,16 +17,16 @@ export function FormPizza() {
     const [selectedBase, setSelectedBase] = useState([]);
 
     useEffect(() => {
-            axios.get('http://localhost:8080/api/ingredients').then((response) => {
-                setIngredients(response.data);
-            })
-            axios.get('http://localhost:8080/api/bases').then((response) => {
-                setBases(response.data);
-            })
-            axios.get('http://localhost:8080/api/customPizzas/lastId').then((response) => {
-                setlastId(response.data);
-            })
-        }, []
+        axios.get('http://localhost:8080/api/ingredients').then((response) => {
+            setIngredients(response.data);
+        })
+        axios.get('http://localhost:8080/api/bases').then((response) => {
+            setBases(response.data);
+        })
+        axios.get('http://localhost:8080/api/customPizzas/lastId').then((response) => {
+            setlastId(response.data);
+        })
+    }, []
     )
 
     function handleSelectedIngredient(event, id) {
@@ -41,7 +41,7 @@ export function FormPizza() {
 
     function handleSelectedBase(event) {
         if (event.target.value !== "") {
-            setSelectedBase({name: event.target.value, id: event.target.selectedOptions[0].dataset.id});
+            setSelectedBase({ name: event.target.value, id: event.target.selectedOptions[0].dataset.id });
         } else {
             alert("Veuiilez choisir une base")
         }
@@ -61,15 +61,27 @@ export function FormPizza() {
             return;
         }
 
-        axios.post('http://localhost:8080/api/customPizza', {
-            uuid: uudi,
+
+        // Passer les informations nécessaires pour la commande à la page correspondante
+        const pizzaData = {
             id: lastId,
-            base: selectedBase,
-            ingredients: selectedIngredient
-        }).then((response) => {
-            console.log(response)
-            alert("Votre pizza a bien été commandé")
-        })
+            type: "Générazza",
+            price: 15
+        };
+
+        // axios.post('http://localhost:8080/api/customPizza', {
+        //     uuid: uudi,
+        //     id: lastId,
+        //     base: selectedBase,
+        //     ingredients: selectedIngredient
+        // }).then((response) => {
+        //     console.log(response)
+        //     alert("Votre pizza a bien été commandé")
+        // })
+
+
+        // Redirection vers la page de commande avec les données de la pizza
+        window.location.href = `/commande?data=${encodeURIComponent(JSON.stringify(pizzaData))}`;
 
     }
 
