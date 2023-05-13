@@ -89,7 +89,7 @@ const CommandPage = () => {
             })
             .catch(error => {
                 console.error(error);
-                // Gérer l'erreur (par exemple, afficher un message d'erreur à l'utilisateur)
+
             });
     };
 
@@ -100,7 +100,7 @@ const CommandPage = () => {
             <div className='data-row'>
 
                 <p>Type de pizza :<span className='value'> {formState.pizza.type}</span></p>
-                <p>&nbsp;au prix de :<span className='value'> {formState.pizza.price}</span></p>
+                <p>&nbsp;au prix de :<span className='value'> {formState.pizza.price} €</span></p>
             </div>
             <h2 className='page-title-2'>Informations de contact :</h2>
             <form onSubmit={handleSubmit}>

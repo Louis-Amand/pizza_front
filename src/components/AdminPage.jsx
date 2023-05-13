@@ -1,7 +1,6 @@
 import {useState} from "react";
 import axios from "axios";
 import {admin_office} from "../router/Routes";
-import {CustomPizzaPage} from "./CustomPizzaPage";
 
 // Display Admin page (login)
 export function AdminPage() {

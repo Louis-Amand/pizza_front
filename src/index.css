@@ -6,4 +6,12 @@
 @import "stylesheet/commandPage.css";
 @import "stylesheet/admin-login.css";
 @import "stylesheet/admin-back.css";
+@import "stylesheet/confirmationPage.css";
+@import "stylesheet/navbar.css";
+@import "stylesheet/footer.css";
 
+body,
+html {
+    margin: 0;
+    background-color: rgb(213, 213, 213);
+}

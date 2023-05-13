@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pizza from "../../img/pizza-3000285_1280.png";
 
 // Component display Pizza Card on Front & CardPage
 const PizzaCard = ({ image, title, price, ingredients, onOrder }) => {
@@ -8,9 +7,9 @@ const PizzaCard = ({ image, title, price, ingredients, onOrder }) => {
         <div className="pizza-card">
             <img src={image} alt={title} className="pizza-image" />
             <h2 className="pizza-title">{title}</h2>
-            <p className='pizza-prix'>{price}</p>
+            <p className='pizza-prix'>{price} €</p>
             <p className="pizza-ingredients">{ingredients.join(', ')}</p>
-            <button className="order-button button4"  onClick={onOrder}>
+            <button className="order-button button4" onClick={onOrder}>
                 Commander
             </button>
         </div>

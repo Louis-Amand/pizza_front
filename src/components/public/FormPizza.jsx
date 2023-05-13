@@ -66,7 +66,7 @@ export function FormPizza() {
         const pizzaData = {
             id: lastId,
             type: "Générazza",
-            price: `${totalPrice} €`,
+            price: `${totalPrice}`,
             base: selectedBase,
             ingredients: selectedIngredient
         };
