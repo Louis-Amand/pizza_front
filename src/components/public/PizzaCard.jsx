@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import pizza from "../../img/pizza-3000285_1280.png";
 
+// Component display Pizza Card on Front & CardPage
 const PizzaCard = ({ image, title, price, ingredients, onOrder }) => {
     return (
         <div className="pizza-card">

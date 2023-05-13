@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PizzaCard from './public/PizzaCard';
 
+// Display carte page
 const CardPizzaPage = () => {
     const [pizzas, setPizzas] = useState([]);
 

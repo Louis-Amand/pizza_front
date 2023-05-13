@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
+// Display command page
 const CommandPage = () => {
 
     const [formState, setFormState] = useState({

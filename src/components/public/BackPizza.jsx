@@ -5,6 +5,7 @@ import {Ingredient} from "./Ingredient";
 import * as React from "react";
 import {IngredientBackoffice} from "./IngredientBackOffice";
 
+// Component Crud pizza form
 export function BackPizza() {
 	const [updatedPizza, setUpdatedPizza] = useState();
 	const [isUpdateModPizza, setIsUpdateModPizza] = useState(false);

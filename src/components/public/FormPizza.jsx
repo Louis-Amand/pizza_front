@@ -3,8 +3,7 @@ import { Ingredient } from "./Ingredient";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
-
+// Component Custom Pizza Form
 export function FormPizza() {
     const [lastId, setlastId] = useState(0);
     const [ingredients, setIngredients] = useState([]);

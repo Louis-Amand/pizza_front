@@ -7,6 +7,8 @@ import {useEffect, useState} from "react";
 import PizzaCard from "./public/PizzaCard";
 import {Link} from "react-router-dom";
 import {generazza} from "../router/Routes";
+
+// Display Front page
 export function FrontPage() {
     const [pizzas, setPizzas] = useState([]);
 

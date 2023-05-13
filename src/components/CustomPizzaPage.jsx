@@ -2,6 +2,7 @@ import * as React from 'react';
 import Pizza from '../pizza.svg';
 import { FormPizza } from "./public/FormPizza";
 
+// Display CustomPizza page
 export function CustomPizzaPage() {
     return (
         <>

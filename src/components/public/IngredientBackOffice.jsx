@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// Component Display ingredient in backoffice for crud
 export function IngredientBackoffice({items, checkedItems, onCheckboxChange}) {
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;

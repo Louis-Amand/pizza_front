@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+// Component Crud Base pizza form
 export function BackBase() {
 	const [updatedBase,setUpdatedBase] = useState();
 	const [isUpdateModBa, setIsUpdateModBa] = useState(false);

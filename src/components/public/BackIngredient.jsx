@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+// Component Crud Ingredient pizza form
 export function BackIngredient() {
 	const [updatedIngredient, setUpdatedIngredient] = useState();
 	const [isUpdateModIg, setIsUpdateModIg] = useState(false);
