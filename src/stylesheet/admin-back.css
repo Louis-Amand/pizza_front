@@ -102,6 +102,19 @@
 	align-items: center;
 }
 
+.back-elements ul {
+	display: flex;
+	flex-direction: column;
+	list-style-type: circle;
+	background-color: #f8f9fa;
+}
+.back-elements ul li {
+
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
 .back-elements p {
 	margin-top: 4rem;
 	font-size: 18px;
