@@ -1,6 +1,6 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
-import {admin_office} from "../../router/Routes";
+import { admin_office } from "../../router/Routes";
 
 export function AdminPage() {
 	const [email, setEmail] = useState();
@@ -15,12 +15,12 @@ export function AdminPage() {
 	}
 
 	const handleLogin = () => {
-		if (email == undefined ){
+		if (email == undefined) {
 			alert("Veuillez saisir un email valide !")
 			return;
 		}
 
-		if (password == undefined ){
+		if (password == undefined) {
 			alert("Veuillez saisir un mot de passe valide !")
 			return;
 		}
@@ -29,15 +29,15 @@ export function AdminPage() {
 			{
 				email: email,
 				password: password
-			}).then((response)=>{
+			}).then((response) => {
 				if (response.data === true) {
-					window.localStorage.setItem("isAuth",response.data);
+					window.localStorage.setItem("isAuth", response.data);
 					window.location = window.location.href = admin_office;
 				}
-		})
+			})
 
 	}
-	
+
 	return (
 		<div className="container-login">
 			<div className="screen">
@@ -45,14 +45,14 @@ export function AdminPage() {
 					<div className="login">
 						<div className="login__field">
 							<i className="login__icon fas fa-user"></i>
-							<input onChange={(e)=> handleEmail(e)} type="text" className="login__input" placeholder="Email"/>
+							<input onChange={(e) => handleEmail(e)} type="text" className="login__input" placeholder="Email" />
 						</div>
 						<div className="login__field">
 							<i className="login__icon fas fa-lock"></i>
-							<input type="password" onChange={(e)=> handlePassword(e)} className="login__input" placeholder="Mot de passe"/>
+							<input type="password" onChange={(e) => handlePassword(e)} className="login__input" placeholder="Mot de passe" />
 						</div>
 						<button onClick={handleLogin} className="button login__submit">
-							<span className="button__text">Authentifiez vous</span>
+							<span className="button__text">Se connecter au panel admin</span>
 							<i className="button__icon fas fa-chevron-right"></i>
 						</button>
 					</div>
