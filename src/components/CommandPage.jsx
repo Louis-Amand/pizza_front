@@ -81,7 +81,7 @@ const CommandPage = () => {
             .post('http://localhost:8080/api/commandes', orderData)
             .then(response => {
                 window.localStorage.setItem(orderId, JSON.stringify(orderId));
-                // Rediriger l'utilisateur vers une autre page ou afficher un message de succès
+                window.location.href = '/confirmation';
             })
             .catch(error => {
                 console.error(error);

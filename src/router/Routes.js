@@ -5,12 +5,14 @@ import { FrontPage } from "../components/FrontPage";
 import CommandPage from "../components/CommandPage";
 import { AdminPage } from "../components/public/AdminPage";
 import { BackofficePage } from "../components/BackofficePage";
+import ConfirmationPage from "../components/ConfirmationPage";
 
 
 export const accueil = "/"
 export const generazza = "/generazza"
 export const carte = "/carte"
 export const commande = "/commande"
+export const confirmation = "/confirmation"
 export const admin = "/admin"
 export const admin_office = "/admin-office"
 
@@ -39,6 +41,10 @@ export const router = createBrowserRouter([
         path: admin_office,
         element: <BackofficePage />,
 
+    },
+    {
+        path: confirmation,
+        element: <ConfirmationPage />,
     },
 ]);
 
